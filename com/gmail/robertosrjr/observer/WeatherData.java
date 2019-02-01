@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherData implements Subject {
-	
+
 	private List<Observer> observers;
 	private float temperature;
 	private float humidity;
 	private float pressure;
 
-	
 	public WeatherData() {
 
 		this.observers = new ArrayList<Observer>();
@@ -23,12 +22,11 @@ public class WeatherData implements Subject {
 	}
 
 	@Override
-	public void removeObserver(Observer obsserver) {
-		
-		int i = this.observers.indexOf(obsserver);
-		if (i >= 0) {
+	public void removeObserver(Observer observer) {
 
-			this.observers.remove(i);
+		if (this.observers.contains(observer)) {
+
+			this.observers.remove(observer);
 		}
 	}
 
@@ -57,7 +55,6 @@ public class WeatherData implements Subject {
 		this.temperature = temperature;
 		this.humidity = humidity;
 		this.pressure = pressure;
-		
+		this.measurementsChanged();
 	}
-
 }
